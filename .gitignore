@@ -1,0 +1,7 @@
+# virtual environment
+ven/
+# FLM
+*.FLM
+*.axf
+# BLOB_C
+BLOB/

@@ -1,0 +1,28 @@
+{{algo.symbols['Init'] + header_size + entry}}{# Init #}
+{{algo.symbols['UnInit'] + header_size + entry}}{# UnInit #}
+{{algo.symbols['EraseChip'] + header_size + entry}}{# EraseChip #}
+{{algo.symbols['EraseSector'] + header_size + entry}}{# EraseSector #}
+{{algo.symbols['ProgramPage'] + header_size + entry}}{# ProgramPage #}
+{{0}}{# Verify #}
+{{entry + 1}}{# BKPT #}
+{{entry + header_size + algo.rw_start}}{# RSB #}
+{{stack_pointer}}{# RSP #}
+{{entry+2560}}{# mem buffer location #}
+{{entry}}{# location to write prog_blob in target RAM #}
+{{algo.page_size}}{# ram_to_flash_bytes_to_be_written #}
+{{algo.flash_start}}{# Start address of flash #}
+{{algo.flash_size}}{# Size of flash #}
+{{algo.sector_sizes|length}}{# num of sector_sizes #}
+{%- for start, size  in algo.sector_sizes %}{# List of start and size for each size of flash sector - even indexes are start, odd are size #}
+{{start + algo.flash_start}}{# sector start addr #}
+{{size}}{# size of sector #}
+{%- endfor %}
+{{header_size+(algo.algo_data|length)}}{# size of blob #}
+{%- for data in prog_header.replace(" ", "").split(",") %}{# prog_header #}
+{%- if data != "" %}
+{{algo.hexstring_to_int(data)}}
+{%- endif %}
+{%- endfor %}
+{%- for data in algo.format_algo_data(4, 8, "c").replace("\n","").replace(" ", "").split(",") %}{# algo_data #}
+{{algo.hexstring_to_int(data)}}
+{%- endfor %}

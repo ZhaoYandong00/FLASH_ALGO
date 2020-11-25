@@ -5,3 +5,4 @@ ven/
 *.axf
 # BLOB_C
 BLOB/
+.vscode/

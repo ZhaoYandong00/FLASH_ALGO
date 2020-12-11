@@ -40,7 +40,11 @@ static const uint32_t sectors_info[] = {
 static const program_target_t flash = {
     {{'0x%08x' % (algo.symbols['Init'] + header_size + entry)}}, // Init
     {{'0x%08x' % (algo.symbols['UnInit'] + header_size + entry)}}, // UnInit
-    {{'0x%08x' % (algo.symbols['EraseChip'] + header_size + entry)}}, // EraseChip
+    {%- if algo.symbols['EraseChip']>entry %}
+    {{0}},// EraseChip
+    {%- else %}
+    {{'0x%08x' % (algo.symbols['EraseChip'] + header_size + entry)}},// EraseChip
+    {%- endif %}
     {{'0x%08x' % (algo.symbols['EraseSector'] + header_size + entry)}}, // EraseSector
     {{'0x%08x' % (algo.symbols['ProgramPage'] + header_size + entry)}}, // ProgramPage
     {%- if algo.symbols['Verify']>entry %}

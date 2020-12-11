@@ -6,3 +6,4 @@ ven/
 # BLOB_C
 BLOB/
 .vscode/
+*.pyc

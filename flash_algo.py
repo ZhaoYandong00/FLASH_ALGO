@@ -160,6 +160,9 @@ class PackFlashAlgo(object):
             with open(temp_path, "rb") as f:
                 for line in f: 
                     if line != "" and line != "\n":
+                        if int(line.replace(" ","")) > 4294967295:
+                            with open(os.path.join(os.path.dirname(output_path),"err.txt"),"ab") as err_f:
+                                err_f.write(line+temp_path+"\r\n")
                         write_bin=struct.pack("I",int(line.replace(" ","")))
                         file_handle.write(write_bin)                   
     

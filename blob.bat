@@ -8,4 +8,4 @@ if [%env_exists%]==[0] (
 )else (
 call ven\Scripts\activate
 )
-for /r  %%i in (FLM\*.FLM FLM\*.axf) do python generate_blobs.py FLM\%%~nxi
+for /r FLM %%i in (*.FLM *.axf) do python generate_blobs.py %%~i

@@ -15,7 +15,7 @@
 {{entry + 1}}{# BKPT #}
 {{entry + header_size + algo.rw_start}}{# RSB #}
 {{stack_pointer}}{# RSP #}
-{{entry+2560}}{# mem buffer location #}
+{{stack_pointer+512}}{# mem buffer location #}
 {{entry}}{# location to write prog_blob in target RAM #}
 {{algo.page_size}}{# ram_to_flash_bytes_to_be_written #}
 {{algo.flash_start}}{# Start address of flash #}

@@ -62,7 +62,7 @@ static const program_target_t flash = {
         {{'0x%08x' % stack_pointer}}
     },
 
-    {{'0x%08x' % entry}} + 0x00000A00,  // mem buffer location
+    {{'0x%08x' % entry}} + {{'0x%08x' % (stack_pointer-entry+512)}},  // mem buffer location
     {{'0x%08x' % entry}},               // location to write prog_blob in target RAM
     sizeof({{name}}_flash_prog_blob),   // prog_blob size
     {{name}}_flash_prog_blob,           // address of prog_blob
